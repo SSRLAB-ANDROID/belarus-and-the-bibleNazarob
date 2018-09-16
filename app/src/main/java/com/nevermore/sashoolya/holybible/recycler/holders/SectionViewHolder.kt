@@ -11,7 +11,7 @@ class SectionViewHolder(parent : ViewGroup) : BaseViewHolder<Section>(parent, R.
     override fun bindItem(item: Section) {
         super.bindItem(item)
         itemView.run {
-            tvTitle.text = context.getString(R.string.exhibit,item.id)
+            tvTitle.text = context.getString(R.string.section,item.id)
             tvName.text = item.name
             Glide.with(context).load(item.logo).into(photo)
         }

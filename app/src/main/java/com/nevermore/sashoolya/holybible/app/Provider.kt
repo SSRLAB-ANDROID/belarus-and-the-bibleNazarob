@@ -2,6 +2,8 @@ package com.nevermore.sashoolya.holybible.app
 
 import android.app.Application
 import android.arch.persistence.room.Room
+import com.nevermore.sashoolya.holybible.data.pojo.Exposition
+import com.nevermore.sashoolya.holybible.data.pojo.Section
 import com.nevermore.sashoolya.holybible.retrofit.ApiService
 import com.nevermore.sashoolya.holybible.retrofit.ApiServiceCreator
 import com.nevermore.sashoolya.holybible.room.AppDB
@@ -37,4 +39,7 @@ class Provider(val app : Application){
                 _userDao = db.appDao
             return _userDao!!
         }
+
+    var selectedSection : Section? = null
+    var selectedExposition : Exposition? = null
 }

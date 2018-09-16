@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Holy Bible</string>
+    <string name="section">"Section %1$s :"</string>
     <string name="exhibit">"Exhibit %1$s :"</string>
 </resources>

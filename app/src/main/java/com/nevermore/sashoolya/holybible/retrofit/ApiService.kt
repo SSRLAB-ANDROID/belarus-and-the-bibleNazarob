@@ -1,9 +1,8 @@
 package com.nevermore.sashoolya.holybible.retrofit
 
+import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 import io.reactivex.Observable
-import okhttp3.ResponseBody
-import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiService {
@@ -12,5 +11,5 @@ interface ApiService {
     fun getSections(): Observable<List<Section>>
 
     @GET("get_points/1/")
-    fun getExposites(): Response<ResponseBody>
+    fun getExpositions(): Observable<List<Exposition>>
 }

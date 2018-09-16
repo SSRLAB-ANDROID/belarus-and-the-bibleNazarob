@@ -7,6 +7,8 @@ import android.widget.Toast
 import ru.terrakok.cicerone.android.SupportFragmentNavigator
 import ru.terrakok.cicerone.commands.Command
 import com.nevermore.sashoolya.holybible.R
+import com.nevermore.sashoolya.holybible.mvvm.ExponateFragment
+import com.nevermore.sashoolya.holybible.mvvm.ExpositionsFragment
 import com.nevermore.sashoolya.holybible.mvvm.SectionsFragment
 
 class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator(activity.supportFragmentManager, R.id.container) {
@@ -22,6 +24,8 @@ class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator
     override fun createFragment(screenKey: String, data: Any?): Fragment? {
         when (screenKey) {
             RootScreens.SECTIONS_SCREEN -> return SectionsFragment()
+            RootScreens.EXPOSITIONS_SCREEN -> return ExpositionsFragment()
+            RootScreens.EXPONATE_SCREEN -> return ExponateFragment()
 
         }
         return null

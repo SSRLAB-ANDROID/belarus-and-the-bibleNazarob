@@ -2,13 +2,16 @@ package com.nevermore.sashoolya.holybible.navigation
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.util.provider
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Replace
 
 class RootActivity : AppCompatActivity(), Navigatable {
+    lateinit var toolbar: Toolbar
 
     private val navigator = RootNavigator(this)
 
@@ -18,7 +21,19 @@ class RootActivity : AppCompatActivity(), Navigatable {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(FrameLayout(this).apply { id = R.id.container })
+        setContentView(
+                LinearLayout(this).apply {
+                    orientation = LinearLayout.VERTICAL
+                    addView(Toolbar(this@RootActivity).apply {
+                        toolbar = this
+                        setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                        setTitleTextColor(resources.getColor(android.R.color.white))
+                        setNavigationIcon(R.drawable.ic_back)
+                        setSupportActionBar(this)
+                        setNavigationOnClickListener { router.exit() }
+                    })
+                    addView(FrameLayout(this@RootActivity).apply { id = R.id.container })
+                })
         if (savedInstanceState == null) {
             navigator.applyCommands(arrayOf<Command>(Replace(RootScreens.SECTIONS_SCREEN, null)))
         }
