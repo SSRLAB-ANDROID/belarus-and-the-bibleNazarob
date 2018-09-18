@@ -1,6 +1,7 @@
 package com.nevermore.sashoolya.holybible.app
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 
 class Application : Application(){
 
@@ -9,6 +10,7 @@ class Application : Application(){
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
+        Stetho.initializeWithDefaults(this);
         provider = Provider(this)
     }
 

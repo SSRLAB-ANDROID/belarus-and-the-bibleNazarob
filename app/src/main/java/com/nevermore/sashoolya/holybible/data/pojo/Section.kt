@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 class Section(
-        @PrimaryKey
-        @NonNull
         var id : String = "",
         @SerializedName("id_locale")
+        @PrimaryKey
+        @NonNull
         var idLocale : String = "",
         var name : String = "",
         var lang : String = "",

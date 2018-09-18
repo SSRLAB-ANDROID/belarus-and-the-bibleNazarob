@@ -23,7 +23,7 @@ class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
         return if (viewType == 0) {
             object : BaseViewHolder<Exposition>(parent, R.layout.panel_title) {}.apply {
                 itemView.run {
-                    tvTitle.text = context.getString(R.string.section, section.idLocale)
+                    tvTitle.text = context.getString(R.string.section, section.id)
                     tvName.text = section.name
                 }
             }
@@ -32,9 +32,7 @@ class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
 
     override fun onBindViewHolder(holder: BaseViewHolder<Exposition>, position: Int) {
         if(position > 0) {
-            val item = items[position - 1]
-            holder.bindItem(item)
-            holder.itemView.setOnClickListener { onClick?.invoke(item) }
+            super.onBindViewHolder(holder, position - 1)
         }
     }
 

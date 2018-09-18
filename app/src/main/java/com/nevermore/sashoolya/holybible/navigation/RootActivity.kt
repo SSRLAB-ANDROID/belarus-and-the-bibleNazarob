@@ -59,6 +59,10 @@ class RootActivity : AppCompatActivity(), Navigatable {
         }
     }
 
+    fun competeExit(){
+        exit()
+    }
+
     override fun navigateTo(screen: String){
         router.navigateTo(screen)
     }

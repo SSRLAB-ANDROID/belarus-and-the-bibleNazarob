@@ -24,7 +24,8 @@ class ExpositionsFragment : BaseListFragment<Exposition>(){
             if(it!!.isEmpty()){
                 startRefresh()
             }else{
-                adapter.items = it
+                it!!
+                adapter.items = it.filter{ it.cityId == provider.selectedSection!!.id && it.lang == "1" }
                 stopRefresh()
             }
         })
@@ -35,9 +36,8 @@ class ExpositionsFragment : BaseListFragment<Exposition>(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe({
-                    provider.appDao.insertExpositions(it!!.apply {
-                        forEach { it.image = it.images[0] }
-                    })
+                    it!!
+                    provider.appDao.insertExpositions(it!!)
                 },{
                     it.printStackTrace()
                 })

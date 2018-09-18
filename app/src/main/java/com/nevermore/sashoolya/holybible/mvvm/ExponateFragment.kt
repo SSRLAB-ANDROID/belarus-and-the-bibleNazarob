@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
+import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
 import com.nevermore.sashoolya.holybible.util.provider
 import kotlinx.android.synthetic.main.fragment_exponate.*
 import nl.changer.audiowife.AudioWife
@@ -31,7 +32,7 @@ class ExponateFragment : BaseFragment(){
     private fun setupView(){
         val exponate = provider.selectedExposition!!
         text.text = exponate.text
-        Glide.with(context!!).load(exponate.logo).into(photo)
+        Glide.with(context!!).load(exponate.photo).into(photo)
         tvTitle.text = getString(R.string.exhibit, exponate.idPoint)
         tvName.text = exponate.name
         tvPlace.text = exponate.pointMuseum
@@ -44,6 +45,8 @@ class ExponateFragment : BaseFragment(){
                 .setPlayView(icPlay)
                 .setPauseView(icStop)
                 .setSeekBar(seekBar)
+                .setRuntimeView(tvCurTime)
+                .setTotalTimeView(tvAllTime)
     }
 
     override fun onDestroy() {

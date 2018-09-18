@@ -1,12 +1,13 @@
 package com.nevermore.sashoolya.holybible.retrofit
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiServiceCreator {
-    private val BASE_URL = "http://belarusandthebible.krokam.by/api/"
+    private val BASE_URL = "http://belarus-bible.krokam.by/api/"
 
     private val builder = Retrofit.Builder().baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -14,7 +15,7 @@ object ApiServiceCreator {
 
     private fun getClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                //.addNetworkInterceptor(StethoInterceptor())
+                .addNetworkInterceptor(StethoInterceptor())
                 //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 //.addInterceptor(HeaderInterceptor())
                 .build()

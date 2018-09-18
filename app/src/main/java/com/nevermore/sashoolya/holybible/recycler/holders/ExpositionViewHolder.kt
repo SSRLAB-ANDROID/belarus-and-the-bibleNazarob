@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.util.dp
+import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
 import kotlinx.android.synthetic.main.item_section.view.*
 
 class ExpositionViewHolder(parent : ViewGroup) : BaseViewHolder<Exposition>(parent, R.layout.item_section){
@@ -13,7 +14,7 @@ class ExpositionViewHolder(parent : ViewGroup) : BaseViewHolder<Exposition>(pare
     override fun bindItem(item: Exposition) {
         super.bindItem(item)
         itemView.run {
-            tvTitle.text = context.getString(R.string.exhibit,item.id)
+            tvTitle.text = context.getString(R.string.exhibit,item.idPoint)
             tvName.text = item.name
             photo.layoutParams = LinearLayout.LayoutParams(100.dp, 100.dp)
             Glide.with(context).load(item.logo).into(photo)

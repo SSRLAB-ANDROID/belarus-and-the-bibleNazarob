@@ -19,7 +19,7 @@ class SectionsFragment : BaseListFragment<Section>(){
             if(it!!.isEmpty()){
                 startRefresh()
             }else{
-                adapter.items = it
+                adapter.items = it.filter { it.lang == "1" }
                 stopRefresh()
             }
         })

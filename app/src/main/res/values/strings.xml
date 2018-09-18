@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Holy Bible</string>
-    <string name="section">"Section %1$s :"</string>
-    <string name="exhibit">"Exhibit %1$s :"</string>
+    <string name="app_name">Беларусь і Біблія</string>
+    <string name="section">"Частка %1$s"</string>
+    <string name="exhibit">"Экспанат %1$s"</string>
 </resources>

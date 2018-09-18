@@ -3,10 +3,11 @@ package com.nevermore.sashoolya.holybible.recycler
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
+import com.nevermore.sashoolya.holybible.util.dp
 
 abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
     var onClick: ((item : T) -> Unit)? = null
-    var items: List<T> = listOf()
+    open var items: List<T> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,6 +23,15 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
             val item = items[position]
             holder.bindItem(item)
             holder.itemView.setOnClickListener { onClick?.invoke(item) }
+        holder.itemView.run{
+            setPadding(8.dp, 4.dp, 8.dp, 4.dp)
+            if (position == 0) {
+                setPadding(8.dp, 12.dp, 8.dp, 4.dp)
+            }
+            if(position == items.size - 1){
+                setPadding(8.dp,4.dp, 8.dp, 12.dp)
+            }
+        }
     }
 
     override fun getItemCount(): Int { return items.size}
