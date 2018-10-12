@@ -8,6 +8,7 @@ import com.nevermore.sashoolya.holybible.retrofit.ApiService
 import com.nevermore.sashoolya.holybible.retrofit.ApiServiceCreator
 import com.nevermore.sashoolya.holybible.room.AppDB
 import com.nevermore.sashoolya.holybible.room.AppDao
+import com.nevermore.sashoolya.holybible.tools.Timer
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 
@@ -42,4 +43,9 @@ class Provider(val app : Application){
 
     var selectedSection : Section? = null
     var selectedExposition : Exposition? = null
+    var expos : List<Exposition>? = null
+    var secs : List<Section>? = null
+
+    val timer = Timer()
+    val langManager = LangManager(app)
 }

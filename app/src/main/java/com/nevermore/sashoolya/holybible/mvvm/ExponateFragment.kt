@@ -20,17 +20,13 @@ class ExponateFragment : BaseFragment(){
 
     override fun onRefreshStarted() {
         AudioWife.getInstance().release()
-        setupView()
+        setupObservers()
         stopRefresh()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-       setupView()
-    }
 
-    private fun setupView(){
-        val exponate = provider.selectedExposition!!
+    override fun setupObservers() {
+        val exponate = provider.expos!!.find { it.lang == provider.langManager.langNumber }!!
         text.text = exponate.text
         Glide.with(context!!).load(exponate.photo).into(photo)
         tvTitle.text = getString(R.string.exhibit, exponate.idPoint)
@@ -40,6 +36,7 @@ class ExponateFragment : BaseFragment(){
     }
 
     private fun initPlayer(uri : Uri){
+        AudioWife.getInstance().release()
         AudioWife.getInstance()
                 .init(context!!, uri)
                 .setPlayView(icPlay)
@@ -47,6 +44,8 @@ class ExponateFragment : BaseFragment(){
                 .setSeekBar(seekBar)
                 .setRuntimeView(tvCurTime)
                 .setTotalTimeView(tvAllTime)
+        icPlay.visibility = View.VISIBLE
+        icStop.visibility = View.INVISIBLE
     }
 
     override fun onDestroy() {

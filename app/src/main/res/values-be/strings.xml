@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Беларусь і Біблія</string>
+    <string name="section">"Частка %1$s"</string>
+    <string name="exhibit">"Экспанат %1$s"</string>
+    <string name="choose_lang">"Абярыце мову"</string>
+    <string name="nav_lang">"Мова"</string>
+    <string name="nav_exit">"Выхад"</string>
+</resources>

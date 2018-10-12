@@ -7,6 +7,7 @@ import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
 import com.nevermore.sashoolya.holybible.recycler.holders.ExpositionViewHolder
+import com.nevermore.sashoolya.holybible.util.provider
 import kotlinx.android.synthetic.main.panel_title.view.*
 
 class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
@@ -23,8 +24,8 @@ class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
         return if (viewType == 0) {
             object : BaseViewHolder<Exposition>(parent, R.layout.panel_title) {}.apply {
                 itemView.run {
-                    tvTitle.text = context.getString(R.string.section, section.id)
-                    tvName.text = section.name
+                    tvTitle.text = context.getString(R.string.section, provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.id)
+                    tvName.text =  provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.name
                 }
             }
         } else getItemView(parent)

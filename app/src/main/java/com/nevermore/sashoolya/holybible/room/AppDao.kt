@@ -21,6 +21,6 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertExpositions(items : List<Exposition>)
 
-    @Query("SELECT * FROM exposition")
-    fun getExpositions() : LiveData<List<Exposition>>
+    @Query("SELECT * FROM exposition WHERE cityId = :cityID")
+    fun getExpositions(cityID : String) : LiveData<List<Exposition>>
 }

@@ -24,12 +24,12 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
             holder.bindItem(item)
             holder.itemView.setOnClickListener { onClick?.invoke(item) }
         holder.itemView.run{
-            setPadding(8.dp, 4.dp, 8.dp, 4.dp)
+            setPadding(8.dp, 2.dp, 8.dp, 2.dp)
             if (position == 0) {
-                setPadding(8.dp, 12.dp, 8.dp, 4.dp)
+                setPadding(8.dp, 12.dp, 8.dp, 2.dp)
             }
             if(position == items.size - 1){
-                setPadding(8.dp,4.dp, 8.dp, 12.dp)
+                setPadding(8.dp,2.dp, 8.dp, 12.dp)
             }
         }
     }

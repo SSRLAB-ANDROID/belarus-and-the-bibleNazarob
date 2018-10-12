@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+    android:background="@color/background"
+              android:gravity="center_horizontal"
+    >
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginBottom="64dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_lang"
+        android:textSize="24sp"
+        android:textColor="#232323"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnBel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Беларуская"
+        style="@style/LangButton"
+        android:layout_marginTop="32dp"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnEng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:layout_marginTop="16dp"
+        style="@style/LangButton"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnRus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Русский"
+        android:layout_marginTop="16dp"
+        style="@style/LangButton"
+        />
+</LinearLayout>
+
+
+</LinearLayout>

@@ -6,40 +6,44 @@ import android.view.View
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.navigation.RootScreens
 import com.nevermore.sashoolya.holybible.recycler.ExpositionAdapter
-import com.nevermore.sashoolya.holybible.util.getNavigation
 import com.nevermore.sashoolya.holybible.util.provider
 import io.reactivex.schedulers.Schedulers
 
-class ExpositionsFragment : BaseListFragment<Exposition>(){
+class ExpositionsFragment : BaseListFragment<Exposition>() {
+    private var exps = listOf<Exposition>()
+
+    private  var liveExpositions  = provider.appDao.getExpositions(provider.secs!!.find {
+        it.lang == provider.langManager.langNumber
+    }!!.id)
     override val adapter = ExpositionAdapter(provider.selectedSection!!).apply {
         onClick = {
             provider.selectedExposition = it
-            getNavigation().navigateTo(RootScreens.EXPONATE_SCREEN)
+            provider.expos = exps.filter {e -> e.idPoint == it.idPoint }
+            provider.rootRouter.navigateTo(RootScreens.EXPONATE_SCREEN)
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        provider.appDao.getExpositions().observe(this, Observer {
-            if(it!!.isEmpty()){
-                startRefresh()
-            }else{
-                it!!
-                adapter.items = it.filter{ it.cityId == provider.selectedSection!!.id && it.lang == "1" }
-                stopRefresh()
-            }
+    override fun setupObservers() {
+        liveExpositions.removeObservers(this)
+        liveExpositions.observe(this, Observer {
+            startRefresh()
+            adapter.items = it!!.filter { it.lang == provider.langManager.langNumber }
+            exps = it
+            stopRefresh()
         })
+
     }
 
     override fun onRefreshStarted() {
-        provider.apiService.getExpositions()
+        subs.add(provider.apiService.getExpositions()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe({
                     it!!
                     provider.appDao.insertExpositions(it!!)
-                },{
-                    it.printStackTrace()
+                }, {
+                    stopRefresh()
                 })
+        )
     }
 }

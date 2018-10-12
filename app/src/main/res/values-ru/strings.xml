@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Беларусь и Библия</string>
+    <string name="section">"Секция %1$s"</string>
+    <string name="exhibit">"Экспонат %1$s"</string>
+    <string name="choose_lang">"Выберите язык"</string>
+    <string name="nav_lang">"Язык"</string>
+    <string name="nav_exit">"Выход"</string>
+</resources>

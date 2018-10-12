@@ -9,12 +9,14 @@ import ru.terrakok.cicerone.commands.Command
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.mvvm.ExponateFragment
 import com.nevermore.sashoolya.holybible.mvvm.ExpositionsFragment
+import com.nevermore.sashoolya.holybible.mvvm.PreviewFragment
 import com.nevermore.sashoolya.holybible.mvvm.SectionsFragment
 
 class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator(activity.supportFragmentManager, R.id.container) {
 
     override fun exit() {
-        activity.finish()
+        //activity.finish()
+        System.exit(0)
     }
 
     override fun showSystemMessage(message: String?) {
@@ -26,6 +28,7 @@ class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator
             RootScreens.SECTIONS_SCREEN -> return SectionsFragment()
             RootScreens.EXPOSITIONS_SCREEN -> return ExpositionsFragment()
             RootScreens.EXPONATE_SCREEN -> return ExponateFragment()
+            RootScreens.PREVIEW_SCREEN -> return PreviewFragment()
 
         }
         return null

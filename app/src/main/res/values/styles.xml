@@ -9,4 +9,8 @@
         <item name="android:windowBackground">@color/background</item>
     </style>
 
+    <style name="LangButton" parent="Base.Widget.AppCompat.Button">
+        <item name="colorButtonNormal">#fff</item>
+        <item name="android:padding">16dp</item>
+    </style>
 </resources>
