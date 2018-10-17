@@ -5,4 +5,5 @@ object RootScreens {
     const val EXPOSITIONS_SCREEN = "EXPOSITIONS_SCREEN"
     const val EXPONATE_SCREEN = "EXPONATE_SCREEN"
     const val PREVIEW_SCREEN = "PREVIEW_SCREEN"
+    const val ABOUT_SCREEN = "ABOUT_SCREEN"
 }

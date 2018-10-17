@@ -48,4 +48,6 @@ class Provider(val app : Application){
 
     val timer = Timer()
     val langManager = LangManager(app)
+
+    var isMenuState = true
 }

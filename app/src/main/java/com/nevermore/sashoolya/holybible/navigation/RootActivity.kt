@@ -24,7 +24,7 @@ class RootActivity : AppCompatActivity(){
     private val navigator = RootNavigator(this)
     val router = provider.rootRouter
     val navigatorHolder = provider.rootNavigatorHolder
-    private var isMenuState = true
+
 
     val subs = CompositeDisposable()
 
@@ -33,6 +33,7 @@ class RootActivity : AppCompatActivity(){
         setContentView(R.layout.activity_root)
         setupToolbar()
         setupNavigationMenu()
+        observeLangChange()
 
         provider.timer.start(3)
         if (savedInstanceState == null) {
@@ -57,7 +58,7 @@ class RootActivity : AppCompatActivity(){
             setSupportActionBar(this)
             adaptMenuIcon()
             setNavigationOnClickListener {
-                if (isMenuState)
+                if (provider.isMenuState)
                     drawerLayout.openDrawer(GravityCompat.START)
                 else
                     router.exit()
@@ -72,12 +73,24 @@ class RootActivity : AppCompatActivity(){
                 drawerLayout.closeDrawers()
                 when (menuItem.itemId) {
                     R.id.nav_lang -> LanguageDialog().show(supportFragmentManager, "lang")
+                    R.id.nav_about -> {
+                        router.navigateTo(RootScreens.ABOUT_SCREEN)
+                        provider.isMenuState = false
+                        adaptMenuIcon()
+                    }
                     R.id.nav_exit -> System.exit(0)
-
                 }
-                true
+                false
             }
         }
+    }
+
+    private fun observeLangChange(){
+        subs.add(provider.langManager.langHasChanged.subscribe ({
+            recreate()
+        },{
+            it.printStackTrace()
+        }))
     }
 
     private fun isPreview(b: Boolean) {
@@ -95,12 +108,12 @@ class RootActivity : AppCompatActivity(){
 
 
     fun adaptState(fragment: Fragment) {
-        isMenuState = fragment is SectionsFragment
+        provider.isMenuState = fragment is SectionsFragment
         adaptMenuIcon()
     }
 
     private fun adaptMenuIcon() {
-        toolbar.setNavigationIcon(if (isMenuState) R.drawable.ic_menu else R.drawable.ic_back)
+        toolbar.setNavigationIcon(if (provider.isMenuState) R.drawable.ic_menu else R.drawable.ic_back)
     }
 
     override fun onResumeFragments() {

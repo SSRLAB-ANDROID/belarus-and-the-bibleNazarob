@@ -5,4 +5,21 @@
     <string name="choose_lang">"Choose language"</string>
     <string name="nav_lang">"Language"</string>
     <string name="nav_exit">"Exit"</string>
+    <string name="about_us">"About us"</string>
+    <string name="about_us_text"><![CDATA[<b>Mobile audio guide</b> is developed for the exhibition &ldquo;Belarus and the Bible&rdquo; (From September 20 to October 21)
+dedicated to the most famous and influential book in the history of mankind.
+The exhibition was organized by the National Library of Belarus together with
+Manuscript Research Group, a non-profit organization (Manuscript Research Group, USA).<br/><br/>
+
+<b>Developer:</b> Speech Synthesis and Recognition Laboratory of
+United Institute of Informatics Problems of National Academy of Sciences of Belarus (<a href="http://ssrlab.by/">http://ssrlab.by</a>).
+The content is prepared with the support of specialists from the Institute of History of the National Academy of Sciences of Belarus.<br/><br/>
+
+The audio guide is prepared within the framework of <a href="http://krokam.com/">http://krokam.com</a> project.<br/><br/>
+
+Versions of audio guide for another platforms:<br/>
+<a>http://krokam.com/belarus-bible</a>.<br/><br/>
+
+Please, sent your <b>proposals, comments and wishes:</b><br/>
+ssrlab221@gmail.com]]></string>
 </resources>

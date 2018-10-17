@@ -35,7 +35,6 @@ abstract class BaseFragment : Fragment(){
         swipe.setOnRefreshListener {refreshData()}
         notifyStateChanged()
         setupOnInit()
-        observeLangChange()
     }
     fun notifyStateChanged(){
         (activity as RootActivity).adaptState(this)
@@ -48,15 +47,6 @@ abstract class BaseFragment : Fragment(){
                 isInited.value = true
             }
         })
-    }
-
-    private fun observeLangChange(){
-        subs.add(provider.langManager.langHasChanged.subscribe ({
-            //setupObservers()
-            activity!!.recreate()
-        },{
-            stopRefresh()
-        }))
     }
 
     abstract fun setupObservers()
