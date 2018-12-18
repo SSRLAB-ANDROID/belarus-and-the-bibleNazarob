@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
+import com.nevermore.sashoolya.holybible.tools.ViewPagerAdapter
 import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
 import com.nevermore.sashoolya.holybible.util.provider
 import kotlinx.android.synthetic.main.fragment_exponate.*
@@ -27,12 +28,26 @@ class ExponateFragment : BaseFragment(){
 
     override fun setupObservers() {
         val exponate = provider.expos!!.find { it.lang == provider.langManager.langNumber }!!
-        text.text = exponate.text
+        //text.text = exponate.text
         Glide.with(context!!).load(exponate.photo).into(photo)
         tvTitle.text = getString(R.string.exhibit, exponate.idPoint)
         tvName.text = exponate.name
         tvPlace.text = exponate.pointMuseum
+
+        setupTabs(exponate.textLong, exponate.text)
         initPlayer(Uri.parse(exponate.sound))
+    }
+
+    private fun setupTabs(textLong : String, textShort  :String){
+        val adapter = ViewPagerAdapter(childFragmentManager).apply {
+            addFragment(TextFragment().apply {
+                text.value = textLong
+            }, resources.getString(R.string.long_desc))
+            addFragment(TextFragment().apply {
+                text.value = textShort
+            }, resources.getString(R.string.short_desc))
+        }
+        tabs.setupWithViewPager(pager.apply { this.adapter = adapter })
     }
 
     private fun initPlayer(uri : Uri){

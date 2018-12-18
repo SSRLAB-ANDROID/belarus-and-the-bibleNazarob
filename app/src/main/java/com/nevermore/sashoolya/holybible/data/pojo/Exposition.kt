@@ -17,6 +17,8 @@ class Exposition(
         @SerializedName("point_museum")
         var pointMuseum : String = "",
         var text : String = "",
+        @SerializedName("long_description")
+        var textLong : String = "long text",
         var sound : String = "",
         var lang : String = "",
         @SerializedName("last_edit_time")
