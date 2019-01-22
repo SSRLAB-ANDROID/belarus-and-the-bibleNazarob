@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.app.LangManager
-import com.nevermore.sashoolya.holybible.util.provider
+import com.nevermore.sashoolya.holybible.tools.provider
 import kotlinx.android.synthetic.main.dialog_lang.*
 
 class LanguageDialog : AppCompatDialogFragment(){

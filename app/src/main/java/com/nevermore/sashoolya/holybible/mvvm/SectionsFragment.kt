@@ -3,11 +3,10 @@ package com.nevermore.sashoolya.holybible.mvvm
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
-import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 import com.nevermore.sashoolya.holybible.navigation.RootScreens
 import com.nevermore.sashoolya.holybible.recycler.SectionAdapter
-import com.nevermore.sashoolya.holybible.util.provider
+import com.nevermore.sashoolya.holybible.tools.provider
 import io.reactivex.schedulers.Schedulers
 
 class SectionsFragment : BaseListFragment<Section>() {

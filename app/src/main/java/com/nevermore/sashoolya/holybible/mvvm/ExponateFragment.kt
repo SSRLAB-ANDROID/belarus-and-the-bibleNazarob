@@ -1,16 +1,13 @@
 package com.nevermore.sashoolya.holybible.mvvm
 
 import android.net.Uri
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
-import com.nevermore.sashoolya.holybible.tools.ViewPagerAdapter
-import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
-import com.nevermore.sashoolya.holybible.util.provider
+import com.nevermore.sashoolya.holybible.tools.CustomPagerAdapter
+import com.nevermore.sashoolya.holybible.tools.provider
 import kotlinx.android.synthetic.main.fragment_exponate.*
 import nl.changer.audiowife.AudioWife
 
@@ -39,13 +36,13 @@ class ExponateFragment : BaseFragment(){
     }
 
     private fun setupTabs(textLong : String, textShort  :String){
-        val adapter = ViewPagerAdapter(childFragmentManager).apply {
-            addFragment(TextFragment().apply {
-                text.value = textLong
-            }, resources.getString(R.string.long_desc))
+        val adapter = CustomPagerAdapter(childFragmentManager).apply {
             addFragment(TextFragment().apply {
                 text.value = textShort
             }, resources.getString(R.string.short_desc))
+            addFragment(TextFragment().apply {
+                text.value = textLong
+            }, resources.getString(R.string.long_desc))
         }
         tabs.setupWithViewPager(pager.apply { this.adapter = adapter })
     }
@@ -58,13 +55,16 @@ class ExponateFragment : BaseFragment(){
                 .setPauseView(icStop)
                 .setSeekBar(seekBar)
                 .setRuntimeView(tvCurTime)
+
+
                 .setTotalTimeView(tvAllTime)
         icPlay.visibility = View.VISIBLE
         icStop.visibility = View.INVISIBLE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         AudioWife.getInstance().release()
     }
+
 }

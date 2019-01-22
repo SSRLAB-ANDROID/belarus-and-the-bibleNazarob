@@ -1,4 +1,4 @@
-package com.nevermore.sashoolya.holybible.util
+package com.nevermore.sashoolya.holybible.tools
 
 import android.content.Context
 import android.content.res.Resources

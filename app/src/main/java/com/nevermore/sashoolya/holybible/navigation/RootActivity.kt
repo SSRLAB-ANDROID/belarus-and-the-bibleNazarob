@@ -3,21 +3,19 @@ package com.nevermore.sashoolya.holybible.navigation
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.app.ContextWrapper
 import com.nevermore.sashoolya.holybible.mvvm.LanguageDialog
 import com.nevermore.sashoolya.holybible.mvvm.SectionsFragment
-import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
-import com.nevermore.sashoolya.holybible.util.provider
+import com.nevermore.sashoolya.holybible.tools.isVisibleOrGone
+import com.nevermore.sashoolya.holybible.tools.provider
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.toolbar.*
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Replace
-import java.util.*
 
 class RootActivity : AppCompatActivity(){
 

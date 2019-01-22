@@ -1,13 +1,12 @@
 package com.nevermore.sashoolya.holybible.recycler
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
 import com.nevermore.sashoolya.holybible.recycler.holders.ExpositionViewHolder
-import com.nevermore.sashoolya.holybible.util.provider
+import com.nevermore.sashoolya.holybible.tools.provider
 import kotlinx.android.synthetic.main.panel_title.view.*
 
 class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){

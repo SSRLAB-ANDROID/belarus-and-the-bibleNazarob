@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.navigation.RootActivity
-import com.nevermore.sashoolya.holybible.util.provider
 import io.reactivex.disposables.CompositeDisposable
 
 

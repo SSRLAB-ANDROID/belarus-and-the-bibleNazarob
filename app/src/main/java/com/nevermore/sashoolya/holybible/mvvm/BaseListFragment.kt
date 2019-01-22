@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 
 import com.nevermore.sashoolya.holybible.recycler.BaseAdapter
-import com.nevermore.sashoolya.holybible.util.dp
-import com.nevermore.sashoolya.holybible.util.setVertical
+import com.nevermore.sashoolya.holybible.tools.setVertical
 
 abstract class BaseListFragment<T> : BaseFragment(){
 

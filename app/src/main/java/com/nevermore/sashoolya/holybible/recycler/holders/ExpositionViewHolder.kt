@@ -5,8 +5,7 @@ import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
-import com.nevermore.sashoolya.holybible.util.dp
-import com.nevermore.sashoolya.holybible.util.isVisibleOrGone
+import com.nevermore.sashoolya.holybible.tools.dp
 import kotlinx.android.synthetic.main.item_section.view.*
 
 class ExpositionViewHolder(parent : ViewGroup) : BaseViewHolder<Exposition>(parent, R.layout.item_section){

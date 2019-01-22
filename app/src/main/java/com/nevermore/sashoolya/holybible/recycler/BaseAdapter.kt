@@ -3,7 +3,7 @@ package com.nevermore.sashoolya.holybible.recycler
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
-import com.nevermore.sashoolya.holybible.util.dp
+import com.nevermore.sashoolya.holybible.tools.dp
 
 abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
     var onClick: ((item : T) -> Unit)? = null
@@ -24,9 +24,9 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
             holder.bindItem(item)
             holder.itemView.setOnClickListener { onClick?.invoke(item) }
         holder.itemView.run{
-            setPadding(8.dp, 2.dp, 8.dp, 2.dp)
+            setPadding(8.dp, 2.dp, 8.dp, 4.dp)
             if (position == 0) {
-                setPadding(8.dp, 12.dp, 8.dp, 2.dp)
+                setPadding(8.dp, 12.dp, 8.dp, 4.dp)
             }
             if(position == items.size - 1){
                 setPadding(8.dp,2.dp, 8.dp, 12.dp)
