@@ -11,7 +11,7 @@ import com.nevermore.sashoolya.holybible.tools.provider
 import kotlinx.android.synthetic.main.fragment_exponate.*
 import nl.changer.audiowife.AudioWife
 
-class ExponateFragment : BaseFragment(){
+class ExponateFragment : BaseFragment() {
     override fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
         return inflater.inflate(R.layout.fragment_exponate, container, false)
     }
@@ -35,19 +35,22 @@ class ExponateFragment : BaseFragment(){
         initPlayer(Uri.parse(exponate.sound))
     }
 
-    private fun setupTabs(textLong : String, textShort  :String){
+    private fun setupTabs(textLong: String, textShort: String) {
         val adapter = CustomPagerAdapter(childFragmentManager).apply {
             addFragment(TextFragment().apply {
                 text.value = textShort
             }, resources.getString(R.string.short_desc))
-            addFragment(TextFragment().apply {
-                text.value = textLong
-            }, resources.getString(R.string.long_desc))
+
+            if (textLong.isNotEmpty() && textLong != textShort) {
+                addFragment(TextFragment().apply {
+                    text.value = textLong
+                }, resources.getString(R.string.long_desc))
+            }
         }
         tabs.setupWithViewPager(pager.apply { this.adapter = adapter })
     }
 
-    private fun initPlayer(uri : Uri){
+    private fun initPlayer(uri: Uri) {
         AudioWife.getInstance().release()
         AudioWife.getInstance()
                 .init(context!!, uri)
