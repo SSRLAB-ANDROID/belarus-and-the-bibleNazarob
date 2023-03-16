@@ -42,6 +42,7 @@ class SectionsFragment : BaseListFragment<Section>() {
                     provider.appDao.insertSectons(it!!)
                 }, {
                     stopRefresh()
+                    println(it.message)
                 })
         )
     }

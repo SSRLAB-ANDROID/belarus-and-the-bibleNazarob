@@ -17,8 +17,6 @@ class TextFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentTextBinding.inflate(layoutInflater)
 
-        println("Text")
-
         return mBinding.root
     }
 

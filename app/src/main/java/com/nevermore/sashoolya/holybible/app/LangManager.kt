@@ -2,7 +2,6 @@ package com.nevermore.sashoolya.holybible.app
 
 import android.app.Application
 import android.content.Context
-import android.content.res.Configuration
 import io.reactivex.subjects.PublishSubject
 import java.util.*
 
@@ -17,7 +16,6 @@ class LangManager(private val app : Application){
     var language = Language.BEL
         set(value) {
             field = value
-            //updateResources(value)
             when(value){
                 Language.BEL -> putString(LANGUAGE, "1")
                 Language.ENG -> putString(LANGUAGE, "3")
@@ -36,7 +34,6 @@ class LangManager(private val app : Application){
         }
 
     init {
-        //updateResources(Language.BEL)
         when(getString(LANGUAGE)){
             "1" -> language = Language.BEL
             "2" -> language = Language.ENG

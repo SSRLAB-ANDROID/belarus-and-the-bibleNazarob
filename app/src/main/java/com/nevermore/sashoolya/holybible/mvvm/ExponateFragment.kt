@@ -17,7 +17,6 @@ class ExponateFragment : BaseFragment() {
     override fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
         mBinding = FragmentExponateBinding.inflate(layoutInflater)
 
-        println("Exponate")
         return mBinding.root
     }
 

@@ -17,7 +17,7 @@ class ExpositionsFragment : BaseListFragment<Exposition>() {
         onClick = {
             provider.selectedExposition = it
             provider.expos = exps.filter { e -> e.idPoint == it.idPoint }
-            provider.rootRouter.navigateTo(FragmentScreen{ExpositionsFragment()})
+            provider.rootRouter.navigateTo(FragmentScreen{ExponateFragment()})
         }
     }
 
@@ -41,6 +41,7 @@ class ExpositionsFragment : BaseListFragment<Exposition>() {
                     provider.appDao.insertExpositions(it)
                 }, {
                     stopRefresh()
+                    println(it.message)
                 })
         )
     }

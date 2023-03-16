@@ -10,7 +10,7 @@ class Application : Application(){
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
         provider = Provider(this)
     }
 
