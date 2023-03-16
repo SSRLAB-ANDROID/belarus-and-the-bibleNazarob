@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
+import com.nevermore.sashoolya.holybible.databinding.FragmentExponateBinding
 import com.nevermore.sashoolya.holybible.tools.CustomPagerAdapter
 import com.nevermore.sashoolya.holybible.tools.provider
-import kotlinx.android.synthetic.main.fragment_exponate.*
 import nl.changer.audiowife.AudioWife
 
 class ExponateFragment : BaseFragment() {
+
+    private lateinit var mBinding: FragmentExponateBinding
     override fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
-        return inflater.inflate(R.layout.fragment_exponate, container, false)
+        mBinding = FragmentExponateBinding.inflate(layoutInflater)
+
+        println("Exponate")
+        return mBinding.root
     }
 
     override fun onRefreshStarted() {
@@ -26,10 +31,10 @@ class ExponateFragment : BaseFragment() {
     override fun setupObservers() {
         val exponate = provider.expos!!.find { it.lang == provider.langManager.langNumber }!!
         //text.text = exponate.text
-        Glide.with(context!!).load(exponate.photo).into(photo)
-        tvTitle.text = getString(R.string.exhibit, exponate.idPoint)
-        tvName.text = exponate.name
-        tvPlace.text = exponate.pointMuseum
+        Glide.with(requireContext()).load(exponate.photo).into(mBinding.photo)
+        mBinding.tvTitle.text = getString(R.string.exhibit, exponate.idPoint)
+        mBinding.tvName.text = exponate.name
+        mBinding.tvPlace.text = exponate.pointMuseum
 
         setupTabs(exponate.textLong, exponate.text)
         initPlayer(Uri.parse(exponate.sound))
@@ -47,22 +52,22 @@ class ExponateFragment : BaseFragment() {
                 }, resources.getString(R.string.long_desc))
             }
         }
-        tabs.setupWithViewPager(pager.apply { this.adapter = adapter })
+        mBinding.tabs.setupWithViewPager(mBinding.pager.apply { this.adapter = adapter })
     }
 
     private fun initPlayer(uri: Uri) {
         AudioWife.getInstance().release()
         AudioWife.getInstance()
-                .init(context!!, uri)
-                .setPlayView(icPlay)
-                .setPauseView(icStop)
-                .setSeekBar(seekBar)
-                .setRuntimeView(tvCurTime)
+                .init(requireContext(), uri)
+                .setPlayView(mBinding.icPlay)
+                .setPauseView(mBinding.icStop)
+                .setSeekBar(mBinding.seekBar)
+                .setRuntimeView(mBinding.tvCurTime)
 
 
-                .setTotalTimeView(tvAllTime)
-        icPlay.visibility = View.VISIBLE
-        icStop.visibility = View.INVISIBLE
+                .setTotalTimeView(mBinding.tvAllTime)
+        mBinding.icPlay.visibility = View.VISIBLE
+        mBinding.icStop.visibility = View.INVISIBLE
     }
 
     override fun onStop() {

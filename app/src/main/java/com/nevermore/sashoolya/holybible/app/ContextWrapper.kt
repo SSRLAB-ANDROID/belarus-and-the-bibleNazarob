@@ -6,15 +6,13 @@ import android.os.Build
 import android.os.LocaleList
 import java.util.*
 
-
 class ContextWrapper(base: Context) : android.content.ContextWrapper(base) {
     companion object {
-
         fun wrap(context: Context, newLocale: Locale): ContextWrapper {
             var context = context
 
-            val res = context.getResources()
-            val configuration = res.getConfiguration()
+            val res = context.resources
+            val configuration = res.configuration
 
             if (Build.VERSION.SDK_INT >= 24) {
                 configuration.setLocale(newLocale)
@@ -31,7 +29,7 @@ class ContextWrapper(base: Context) : android.content.ContextWrapper(base) {
 
             } else {
                 configuration.locale = newLocale
-                res.updateConfiguration(configuration, res.getDisplayMetrics())
+                res.updateConfiguration(configuration, res.displayMetrics)
             }
 
             return ContextWrapper(context)

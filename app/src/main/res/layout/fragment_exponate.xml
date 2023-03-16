@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -63,20 +64,20 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/ic_pause"
-                    android:tint="#e53935"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    app:tint="#e53935" />
                 <ImageView
                     android:id="@+id/icPlay"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@drawable/ic_play"
-                    android:tint="#e53935"/>
+                    app:tint="#e53935" />
             </FrameLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:layout_centerVertical="true"
                     android:id="@+id/seekBar"
                     android:layout_width="match_parent"
@@ -115,7 +116,7 @@
 
 
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,4 +129,4 @@
             />
 
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

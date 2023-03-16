@@ -1,7 +1,7 @@
 package com.nevermore.sashoolya.holybible.room
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 

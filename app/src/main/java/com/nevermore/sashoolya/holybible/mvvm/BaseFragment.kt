@@ -1,17 +1,16 @@
 package com.nevermore.sashoolya.holybible.mvvm
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.navigation.RootActivity
 import io.reactivex.disposables.CompositeDisposable
-
 
 abstract class BaseFragment : Fragment(){
     private val isInited = MutableLiveData<Boolean>().apply { value = false }
@@ -21,7 +20,7 @@ abstract class BaseFragment : Fragment(){
     abstract fun getContentView(inflater: LayoutInflater, container: ViewGroup?) : View?
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return SwipeRefreshLayout(context!!).apply {
+        return SwipeRefreshLayout(requireContext()).apply {
             id = R.id.swipe
             addView(getContentView(inflater, container))
             swipe = this
@@ -40,7 +39,7 @@ abstract class BaseFragment : Fragment(){
     }
 
     private fun setupOnInit(){
-        isInited.observe(this, Observer {
+        isInited.observe(viewLifecycleOwner, Observer {
             if(!it!!){
                 refreshData()
                 isInited.value = true

@@ -1,26 +1,29 @@
 package com.nevermore.sashoolya.holybible.navigation
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-import ru.terrakok.cicerone.android.SupportFragmentNavigator
-import ru.terrakok.cicerone.commands.Command
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import com.github.terrakok.cicerone.Command
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.mvvm.*
+import kotlin.system.exitProcess
 
-class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator(activity.supportFragmentManager, R.id.container) {
+class RootNavigator(activity: RootActivity) : AppNavigator(activity, R.id.container) {
 
-    override fun exit() {
-        //activity.finish()
-        System.exit(0)
+    fun exit() {
+        activity.finish()
+        exitProcess(0)
     }
 
-    override fun showSystemMessage(message: String?) {
+    fun showSystemMessage(message: String?) {
         Toast.makeText(activity, message ?: "null", Toast.LENGTH_SHORT).show()
     }
 
-    override fun createFragment(screenKey: String, data: Any?): Fragment? {
+    fun createFragment(screenKey: String, data: Any?): Fragment? {
         when (screenKey) {
             RootScreens.SECTIONS_SCREEN -> return SectionsFragment()
             RootScreens.EXPOSITIONS_SCREEN -> return ExpositionsFragment()
@@ -32,10 +35,11 @@ class RootNavigator(val activity : AppCompatActivity) : SupportFragmentNavigator
         return null
     }
 
-    override fun setupFragmentTransactionAnimation(command: Command,
+    fun setupFragmentTransactionAnimation(command: Command,
                                                    currentFragment: Fragment?,
                                                    nextFragment: Fragment,
-                                                   fragmentTransaction: FragmentTransaction) {
+                                                   fragmentTransaction: FragmentTransaction
+    ) {
         currentFragment?.let {
             fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
         }

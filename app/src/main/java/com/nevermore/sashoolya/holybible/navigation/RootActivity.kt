@@ -1,34 +1,39 @@
 package com.nevermore.sashoolya.holybible.navigation
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import com.github.terrakok.cicerone.Command
+import com.github.terrakok.cicerone.Replace
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.app.ContextWrapper
-import com.nevermore.sashoolya.holybible.mvvm.LanguageDialog
-import com.nevermore.sashoolya.holybible.mvvm.SectionsFragment
+import com.nevermore.sashoolya.holybible.databinding.ActivityRootBinding
+import com.nevermore.sashoolya.holybible.mvvm.*
 import com.nevermore.sashoolya.holybible.tools.isVisibleOrGone
 import com.nevermore.sashoolya.holybible.tools.provider
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_root.*
-import kotlinx.android.synthetic.main.toolbar.*
-import ru.terrakok.cicerone.commands.Command
-import ru.terrakok.cicerone.commands.Replace
+import kotlin.system.exitProcess
 
 class RootActivity : AppCompatActivity(){
 
     private val navigator = RootNavigator(this)
-    val router = provider.rootRouter
-    val navigatorHolder = provider.rootNavigatorHolder
+    private val router = provider.rootRouter
+    private val navigatorHolder = provider.rootNavigatorHolder
+    private lateinit var mBinding: ActivityRootBinding
+    private lateinit var mToolbar: Toolbar
 
-
-    val subs = CompositeDisposable()
+    private val subs = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_root)
+        mBinding = ActivityRootBinding.inflate(layoutInflater)
+        mToolbar = mBinding.toolbar
+        setContentView(mBinding.root)
+
         setupToolbar()
         setupNavigationMenu()
         observeLangChange()
@@ -51,13 +56,13 @@ class RootActivity : AppCompatActivity(){
     }
 
     private fun setupToolbar() {
-        toolbar.apply {
+        mToolbar.apply {
             title = resources.getString(R.string.app_name)
             setSupportActionBar(this)
             adaptMenuIcon()
             setNavigationOnClickListener {
                 if (provider.isMenuState)
-                    drawerLayout.openDrawer(GravityCompat.START)
+                    mBinding.drawerLayout.openDrawer(GravityCompat.START)
                 else
                     router.exit()
             }
@@ -65,18 +70,18 @@ class RootActivity : AppCompatActivity(){
     }
 
     private fun setupNavigationMenu() {
-        navigation.apply {
+        mBinding.navigation.apply {
             setNavigationItemSelectedListener { menuItem ->
                 menuItem.isChecked = true
-                drawerLayout.closeDrawers()
+                mBinding.drawerLayout.closeDrawers()
                 when (menuItem.itemId) {
                     R.id.nav_lang -> LanguageDialog().show(supportFragmentManager, "lang")
                     R.id.nav_about -> {
-                        router.navigateTo(RootScreens.ABOUT_SCREEN)
+                        router.navigateTo(FragmentScreen{ AboutUsFragment() })
                         provider.isMenuState = false
                         adaptMenuIcon()
                     }
-                    R.id.nav_exit -> System.exit(0)
+                    R.id.nav_exit -> exitProcess(0)
                 }
                 false
             }
@@ -94,14 +99,14 @@ class RootActivity : AppCompatActivity(){
     private fun isPreview(b: Boolean) {
         isMenuEnabled(!b)
         if (b)
-            navigator.applyCommands(arrayOf<Command>(Replace(RootScreens.PREVIEW_SCREEN, null)))
+            navigator.applyCommands(arrayOf<Command>(Replace(FragmentScreen{ PreviewFragment() })))
         else
-            navigator.applyCommands(arrayOf<Command>(Replace(RootScreens.SECTIONS_SCREEN, null)))
+            navigator.applyCommands(arrayOf<Command>(Replace(FragmentScreen{ SectionsFragment() })))
     }
 
     private fun isMenuEnabled(b: Boolean) {
-        drawerLayout.isEnabled = b
-        toolbar.isVisibleOrGone(b)
+        mBinding.drawerLayout.isEnabled = b
+        mToolbar.isVisibleOrGone(b)
     }
 
 
@@ -111,7 +116,7 @@ class RootActivity : AppCompatActivity(){
     }
 
     private fun adaptMenuIcon() {
-        toolbar.setNavigationIcon(if (provider.isMenuState) R.drawable.ic_menu else R.drawable.ic_back)
+        mToolbar.setNavigationIcon(if (provider.isMenuState) R.drawable.ic_menu else R.drawable.ic_back)
     }
 
     override fun onResumeFragments() {
@@ -135,9 +140,10 @@ class RootActivity : AppCompatActivity(){
         subs.dispose()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawers()
+        if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mBinding.drawerLayout.closeDrawers()
         } else {
             router.exit()
         }

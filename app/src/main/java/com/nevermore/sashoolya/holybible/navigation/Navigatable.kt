@@ -5,5 +5,5 @@ interface Navigatable {
     fun replaceBy(screen : String)
     fun backTo(screen : String)
     fun exit()
-    fun newRootScreen(scren : String)
+    fun newRootScreen(screen : String)
 }

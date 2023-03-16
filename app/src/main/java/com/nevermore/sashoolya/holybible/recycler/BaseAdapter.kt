@@ -1,6 +1,6 @@
 package com.nevermore.sashoolya.holybible.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
 import com.nevermore.sashoolya.holybible.tools.dp

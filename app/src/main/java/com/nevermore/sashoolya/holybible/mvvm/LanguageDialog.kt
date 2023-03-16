@@ -1,33 +1,37 @@
 package com.nevermore.sashoolya.holybible.mvvm
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nevermore.sashoolya.holybible.R
+import androidx.appcompat.app.AppCompatDialogFragment
 import com.nevermore.sashoolya.holybible.app.LangManager
+import com.nevermore.sashoolya.holybible.databinding.DialogLangBinding
 import com.nevermore.sashoolya.holybible.tools.provider
-import kotlinx.android.synthetic.main.dialog_lang.*
 
 class LanguageDialog : AppCompatDialogFragment(){
+
+    private lateinit var mBinding: DialogLangBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_lang, container, false)
+        mBinding = DialogLangBinding.inflate(layoutInflater)
+
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnBel.setOnClickListener {
+        mBinding.btnBel.setOnClickListener {
             provider.langManager.language = LangManager.Language.BEL
             dismiss()
         }
 
-        btnEng.setOnClickListener {
+        mBinding.btnEng.setOnClickListener {
             provider.langManager.language = LangManager.Language.ENG
             dismiss()
         }
 
-        btnRus.setOnClickListener {
+        mBinding.btnRus.setOnClickListener {
             provider.langManager.language = LangManager.Language.RUS
             dismiss()
         }

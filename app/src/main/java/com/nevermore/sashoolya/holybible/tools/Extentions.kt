@@ -3,9 +3,9 @@ package com.nevermore.sashoolya.holybible.tools
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -23,17 +23,21 @@ fun View.isVisibleOrGone(value : Boolean){
 }
 
 fun RecyclerView.setVertical(){
-    this.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+    this.layoutManager = LinearLayoutManager(
+        context,
+        RecyclerView.VERTICAL,
+        false
+    )
 }
 
 
-fun loadCircleImage(context : Context, url : String, imageView : ImageView){
-    Glide.with(context).load(url)
-            .asBitmap().centerCrop().into(object : BitmapImageViewTarget(imageView) {
-                override fun setResource(resource: Bitmap) {
-                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.resources, resource)
-                    circularBitmapDrawable.isCircular = true
-                    imageView.setImageDrawable(circularBitmapDrawable)
-                }
-            })
-}
+//fun loadCircleImage(context : Context, url : String, imageView : ImageView){
+//    Glide.with(context).load(url)
+//        .asBitmap().centerCrop().into(object : BitmapImageViewTarget(imageView) {
+//                override fun setResource(resource: Bitmap) {
+//                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.resources, resource)
+//                    circularBitmapDrawable.isCircular = true
+//                    imageView.setImageDrawable(circularBitmapDrawable)
+//                }
+//            })
+//}

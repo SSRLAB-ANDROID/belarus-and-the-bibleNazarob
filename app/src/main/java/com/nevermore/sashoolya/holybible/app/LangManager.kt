@@ -6,11 +6,11 @@ import android.content.res.Configuration
 import io.reactivex.subjects.PublishSubject
 import java.util.*
 
+private const val LANGUAGE = "LANGUAGE"
+private const val PREFS_NAME = "HOLY_PREFS"
+
 class LangManager(private val app : Application){
     enum class Language{BEL, ENG, RUS}
-
-    private val PREFS_NAME = "HOLY_PREFS"
-    private val LANGUAGE = "LANGUAGE"
 
     val langHasChanged  = PublishSubject.create<Unit>()
 

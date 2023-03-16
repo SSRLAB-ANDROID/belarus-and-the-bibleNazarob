@@ -1,13 +1,14 @@
 package com.nevermore.sashoolya.holybible.recycler
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
+import com.nevermore.sashoolya.holybible.databinding.ItemSectionBinding
 import com.nevermore.sashoolya.holybible.recycler.holders.BaseViewHolder
 import com.nevermore.sashoolya.holybible.recycler.holders.ExpositionViewHolder
 import com.nevermore.sashoolya.holybible.tools.provider
-import kotlinx.android.synthetic.main.panel_title.view.*
 
 class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
 
@@ -20,11 +21,13 @@ class ExpositionAdapter(val section : Section) : BaseAdapter<Exposition>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Exposition> {
+        val binding = ItemSectionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return if (viewType == 0) {
             object : BaseViewHolder<Exposition>(parent, R.layout.panel_title) {}.apply {
                 itemView.run {
-                    tvTitle.text = context.getString(R.string.section, provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.id)
-                    tvName.text =  provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.name
+                    binding.tvTitle.text = context.getString(R.string.section, provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.id)
+                    binding.tvName.text =  provider.secs!!.find { it.lang == provider.langManager.langNumber}!!.name
                 }
             }
         } else getItemView(parent)

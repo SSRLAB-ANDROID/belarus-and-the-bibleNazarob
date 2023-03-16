@@ -1,7 +1,9 @@
 package com.nevermore.sashoolya.holybible.app
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
+import com.github.terrakok.cicerone.Cicerone
+import com.github.terrakok.cicerone.Router
 import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.data.pojo.Section
 import com.nevermore.sashoolya.holybible.retrofit.ApiService
@@ -9,13 +11,11 @@ import com.nevermore.sashoolya.holybible.retrofit.ApiServiceCreator
 import com.nevermore.sashoolya.holybible.room.AppDB
 import com.nevermore.sashoolya.holybible.room.AppDao
 import com.nevermore.sashoolya.holybible.tools.Timer
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
 
 class Provider(val app : Application){
     private var rootCicerone: Cicerone<Router> = Cicerone.create()
     val rootRouter = rootCicerone.router
-    val rootNavigatorHolder = rootCicerone.navigatorHolder
+    val rootNavigatorHolder = rootCicerone.getNavigatorHolder()
 
     private var _apiService : ApiService? = null
     val apiService : ApiService

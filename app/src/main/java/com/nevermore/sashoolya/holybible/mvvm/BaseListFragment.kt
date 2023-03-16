@@ -1,7 +1,7 @@
 package com.nevermore.sashoolya.holybible.mvvm
 
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ abstract class BaseListFragment<T> : BaseFragment(){
     abstract val adapter : BaseAdapter<T>
 
     override fun getContentView(inflater: LayoutInflater, container: ViewGroup?) : View?{
-        return RecyclerView(context!!).apply {
+        return RecyclerView(requireContext()).apply {
             id = R.id.recycler
         }
     }
