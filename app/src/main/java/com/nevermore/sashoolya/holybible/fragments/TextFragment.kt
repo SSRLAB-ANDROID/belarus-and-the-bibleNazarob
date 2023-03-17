@@ -1,4 +1,4 @@
-package com.nevermore.sashoolya.holybible.mvvm
+package com.nevermore.sashoolya.holybible.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.databinding.FragmentTextBinding
 
 class TextFragment : Fragment(){

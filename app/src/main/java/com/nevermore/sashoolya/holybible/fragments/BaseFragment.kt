@@ -1,4 +1,4 @@
-package com.nevermore.sashoolya.holybible.mvvm
+package com.nevermore.sashoolya.holybible.fragments
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -10,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.navigation.RootActivity
+import com.nevermore.sashoolya.holybible.vm.ExponateViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseFragment : Fragment(){
+
     private val isInited = MutableLiveData<Boolean>().apply { value = false }
     val subs = CompositeDisposable()
     private lateinit var swipe : SwipeRefreshLayout

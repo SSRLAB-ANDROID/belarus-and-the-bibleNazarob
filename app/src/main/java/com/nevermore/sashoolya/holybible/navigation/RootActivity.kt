@@ -12,7 +12,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.nevermore.sashoolya.holybible.R
 import com.nevermore.sashoolya.holybible.app.ContextWrapper
 import com.nevermore.sashoolya.holybible.databinding.ActivityRootBinding
-import com.nevermore.sashoolya.holybible.mvvm.*
+import com.nevermore.sashoolya.holybible.fragments.*
 import com.nevermore.sashoolya.holybible.tools.isVisibleOrGone
 import com.nevermore.sashoolya.holybible.tools.provider
 import io.reactivex.disposables.CompositeDisposable

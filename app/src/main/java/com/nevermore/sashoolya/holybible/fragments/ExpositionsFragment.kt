@@ -1,4 +1,4 @@
-package com.nevermore.sashoolya.holybible.mvvm
+package com.nevermore.sashoolya.holybible.fragments
 
 import androidx.lifecycle.Observer
 import com.github.terrakok.cicerone.androidx.FragmentScreen

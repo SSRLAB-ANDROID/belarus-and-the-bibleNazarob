@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 
 
-class CustomPagerAdapter(val fm : FragmentManager) : FragmentPagerAdapter(fm) {
+class CustomPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
     private val mFragmentList = mutableListOf<Fragment>()
     private val mFragmentTitleList = mutableListOf<String>()
     private var mCurrentPosition = -1

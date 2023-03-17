@@ -1,4 +1,4 @@
-package com.nevermore.sashoolya.holybible.mvvm
+package com.nevermore.sashoolya.holybible.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

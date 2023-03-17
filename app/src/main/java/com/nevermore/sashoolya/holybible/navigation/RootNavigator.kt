@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.github.terrakok.cicerone.Command
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.nevermore.sashoolya.holybible.R
-import com.nevermore.sashoolya.holybible.mvvm.*
+import com.nevermore.sashoolya.holybible.fragments.*
 import kotlin.system.exitProcess
 
 class RootNavigator(activity: RootActivity) : AppNavigator(activity, R.id.container) {
