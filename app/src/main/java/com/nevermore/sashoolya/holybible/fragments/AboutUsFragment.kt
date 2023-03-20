@@ -1,5 +1,7 @@
 package com.nevermore.sashoolya.holybible.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.text.Html
@@ -17,6 +19,9 @@ class AboutUsFragment : Fragment(){
         mBinding = FragmentAboutBinding.inflate(layoutInflater)
 
         mBinding.text.text = Html.fromHtml(resources.getString(R.string.about_us_text))
+        mBinding.mailText.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:ssrlab221@gmail.com")))
+        }
 
         return mBinding.root
     }
