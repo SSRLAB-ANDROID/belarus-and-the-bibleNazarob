@@ -57,4 +57,7 @@ dependencies {
     implementation 'net.the4thdimension:audio-wife:1.0.3'
 
     implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
 }

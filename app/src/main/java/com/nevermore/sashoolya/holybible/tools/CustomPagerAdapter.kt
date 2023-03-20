@@ -1,13 +1,11 @@
 package com.nevermore.sashoolya.holybible.tools
 
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import android.view.ViewGroup
+import androidx.fragment.app.FragmentStatePagerAdapter
 
-
-
-class CustomPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
+class CustomPagerAdapter(fm : FragmentManager) : FragmentStatePagerAdapter(fm) {
     private val mFragmentList = mutableListOf<Fragment>()
     private val mFragmentTitleList = mutableListOf<String>()
     private var mCurrentPosition = -1
@@ -25,7 +23,7 @@ class CustomPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
         mFragmentTitleList.add(title)
     }
 
-    override fun getPageTitle(pos: Int): CharSequence? {
+    override fun getPageTitle(pos: Int): CharSequence {
         return mFragmentTitleList[pos]
     }
 
@@ -38,4 +36,8 @@ class CustomPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
             }
         }
     }
+
+//    override fun getItemPosition(`object`: Any): Int {
+//        return PagerAdapter.POSITION_NONE
+//    }
 }

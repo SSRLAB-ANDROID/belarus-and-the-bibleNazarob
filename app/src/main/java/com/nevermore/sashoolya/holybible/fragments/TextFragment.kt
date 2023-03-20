@@ -10,7 +10,7 @@ import com.nevermore.sashoolya.holybible.databinding.FragmentTextBinding
 
 class TextFragment : Fragment(){
 
-    val text  = MutableLiveData<String>()
+    var text  = MutableLiveData<String>()
     private lateinit var mBinding: FragmentTextBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

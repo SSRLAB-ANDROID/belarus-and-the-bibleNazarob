@@ -17,7 +17,7 @@ abstract class BaseFragment : Fragment(){
 
     private val isInited = MutableLiveData<Boolean>().apply { value = false }
     val subs = CompositeDisposable()
-    private lateinit var swipe : SwipeRefreshLayout
+    lateinit var swipe : SwipeRefreshLayout
 
     abstract fun getContentView(inflater: LayoutInflater, container: ViewGroup?) : View?
 

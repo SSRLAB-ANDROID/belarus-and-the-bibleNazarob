@@ -8,40 +8,59 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.nevermore.sashoolya.holybible.R
-import com.nevermore.sashoolya.holybible.data.pojo.Exposition
 import com.nevermore.sashoolya.holybible.databinding.FragmentExponateBinding
 import com.nevermore.sashoolya.holybible.tools.CustomPagerAdapter
 import com.nevermore.sashoolya.holybible.tools.provider
 import com.nevermore.sashoolya.holybible.vm.ExponateViewModel
-import nl.changer.audiowife.AudioWife
 
 class ExponateFragment : BaseFragment() {
 
     private lateinit var viewModel: ExponateViewModel
     private lateinit var mBinding: FragmentExponateBinding
+    private var textFragment1: TextFragment? = null
+    private var textFragment2: TextFragment? = null
+    private var customPagerAdapter: CustomPagerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModel = ViewModelProvider(this)[ExponateViewModel::class.java]
 
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+        mBinding = if (viewModel.checkBindingSaved()) {
+            FragmentExponateBinding.inflate(layoutInflater)
+        } else {
+            viewModel.getBinding()!!
 
-    override fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View? {
-        mBinding = FragmentExponateBinding.inflate(layoutInflater)
+        }
+
+        swipe = mBinding.swipeRefreshExponate
 
         return mBinding.root
     }
 
-    override fun onRefreshStarted() {
-        AudioWife.getInstance().release()
-        setupObservers()
-        stopRefresh()
+    override fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View {
+        return mBinding.root
     }
 
+    override fun onRefreshStarted() {
+        if (resources.configuration.orientation == viewModel.getConfig()) {
+            println("update")
+
+            viewModel.mpRefresh()
+            setupObservers()
+            stopRefresh()
+        } else {
+            println("change")
+            viewModel.saveConfig(resources.configuration.orientation)
+
+            setupObservers()
+            stopRefresh()
+        }
+
+
+    }
 
     override fun setupObservers() {
         var exponate = viewModel.getExponate()
@@ -56,7 +75,11 @@ class ExponateFragment : BaseFragment() {
             mBinding.tvPlace.text = exponate.pointMuseum
 
             setupTabs(exponate.textLong, exponate.text)
-            initPlayer(Uri.parse(exponate.sound))
+            viewModel.initializeMediaPlayer(Uri.parse(exponate.sound), mBinding, requireContext())
+
+            mBinding.apPlayButton.setOnClickListener {
+                viewModel.playAudio(mBinding)
+            }
         } else {
             exponate = viewModel.getExponate()
 
@@ -66,41 +89,37 @@ class ExponateFragment : BaseFragment() {
             mBinding.tvPlace.text = exponate.pointMuseum
 
             setupTabs(exponate.textLong, exponate.text)
-            initPlayer(Uri.parse(exponate.sound))
+            viewModel.initializeMediaPlayer(Uri.parse(exponate.sound), mBinding, requireContext())
+
+            mBinding.apPlayButton.setOnClickListener {
+                viewModel.playAudio(mBinding)
+            }
         }
     }
 
     private fun setupTabs(textLong: String, textShort: String) {
-        val adapter = CustomPagerAdapter(childFragmentManager).apply {
-            addFragment(TextFragment().apply {
-                text.value = textShort
-            }, resources.getString(R.string.short_desc))
+
+        textFragment1 = TextFragment().apply {
+            text.value = textShort
+        }
+        textFragment2 = TextFragment().apply {
+            text.value = textLong
+        }
+
+        customPagerAdapter = CustomPagerAdapter(childFragmentManager).apply {
+            addFragment(textFragment1!!, resources.getString(R.string.short_desc))
 
             if (textLong.isNotEmpty() && textLong != textShort) {
-                addFragment(TextFragment().apply {
-                    text.value = textLong
-                }, resources.getString(R.string.long_desc))
+                addFragment(textFragment2!!, resources.getString(R.string.long_desc))
             }
         }
-        mBinding.tabs.setupWithViewPager(mBinding.pager.apply { this.adapter = adapter })
-    }
 
-    private fun initPlayer(uri: Uri) {
-        AudioWife.getInstance().release()
-        AudioWife.getInstance()
-            .init(requireContext(), uri)
-            .setPlayView(mBinding.icPlay)
-            .setPauseView(mBinding.icStop)
-            .setSeekBar(mBinding.seekBar)
-            .setRuntimeView(mBinding.tvCurTime)
-
-            .setTotalTimeView(mBinding.tvAllTime)
-        mBinding.icPlay.visibility = View.VISIBLE
-        mBinding.icStop.visibility = View.INVISIBLE
+        mBinding.tabs.setupWithViewPager(mBinding.pager.apply { this.adapter = customPagerAdapter })
+        customPagerAdapter!!.notifyDataSetChanged()
     }
 
     override fun onStop() {
         super.onStop()
-        AudioWife.getInstance().release()
+        viewModel.saveBinding(mBinding)
     }
 }
