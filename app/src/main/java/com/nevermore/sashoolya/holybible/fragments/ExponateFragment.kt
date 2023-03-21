@@ -46,13 +46,13 @@ class ExponateFragment : BaseFragment() {
 
     override fun onRefreshStarted() {
         if (resources.configuration.orientation == viewModel.getConfig()) {
-            println("update")
+            //Refresh Data
 
             viewModel.mpRefresh()
             setupObservers()
             stopRefresh()
         } else {
-            println("change")
+            //Rotate screen
             viewModel.saveConfig(resources.configuration.orientation)
 
             setupObservers()
