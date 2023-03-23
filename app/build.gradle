@@ -39,6 +39,9 @@ dependencies {
 
     implementation("com.github.terrakok:cicerone:7.1")
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    implementation 'androidx.test:monitor:1.5.0'
+    androidTestImplementation 'junit:junit:4.12'
     def lifecycle_version = "2.6.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
@@ -60,4 +63,6 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+
+    testImplementation 'com.android.support.test:runner:1.0.2'
 }
