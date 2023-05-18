@@ -25,6 +25,6 @@
 
     <string name="long_desc">Полное</string>
     <string name="short_desc">Короткое</string>
-    <string name="mail">ssrlab221@gmail.com</string>
+    <string name="mail"><u>ssrlab221@gmail.com</u></string>
 
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nevermore.sashoolya.holybible">
+    package="by.krokam.belarus_bible">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.Application"
+        android:name="by.krokam.belarus_bible.app.Application"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -14,7 +14,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".navigation.RootActivity"
+        <activity android:name="by.krokam.belarus_bible.navigation.RootActivity"
             android:configChanges="orientation"
             android:exported="true">
             <intent-filter>
